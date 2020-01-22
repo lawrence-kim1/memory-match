@@ -5,13 +5,36 @@ body {
 .container{
   height: 100%;
 }
-#congrats-message {
+.congrats {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100%;
   background-color: pink;
   font-size: 10em;
+  text-align: center;
+}
+.congrats > p {
+  margin: 0;
+}
+button {
+  border: 0;
+  border-radius: 20px;
+  font-size: 0.5em;
+  background-color: violet;
+  color: black;
+}
+button:hover{
+  background-color: olive;
+}
+button:active{
+  background-color: red;
 }
 .row {
   justify-content: center;
