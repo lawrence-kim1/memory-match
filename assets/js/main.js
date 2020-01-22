@@ -52,14 +52,14 @@ function handleClick(event) {
       firstCardClicked = null;
       secondCardClicked = null;
       matches++;
-      document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 100)) + '%';
+      displayAccuracy();
       if (matches === maxMatches) {
         document.getElementById('congrats-message').classList.remove('hidden');
         games++;
         document.getElementById('games').textContent = games;
       }
     } else {
-      document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 10000) / 100) + '%';
+      displayAccuracy();
       setTimeout(function(){
         firstCardClicked.classList.remove('hidden');
         secondCardClicked.classList.remove('hidden');
@@ -127,4 +127,8 @@ function resetGame(event) {
   document.getElementById('congrats-message').classList.add('hidden');
   resetCards();
   shuffle(cards);
+}
+
+function displayAccuracy() {
+  document.getElementById('accuracy').textContent = (Math.trunc((matches / attempts) * 10000) / 100) + '%';
 }
