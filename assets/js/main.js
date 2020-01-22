@@ -1,6 +1,8 @@
 var firstCardClicked = null;
 var secondCardClicked = null;
 var firstCardClasses, secondCardClasses;
+var maxMatches = 9;
+var matches = 0;
 var gameField = document.getElementById('gameCards');
 gameField.addEventListener('click', handleClick);
 
@@ -21,6 +23,10 @@ function handleClick(event) {
       gameField.addEventListener('click', handleClick);
       firstCardClicked = null;
       secondCardClicked = null;
+      matches++;
+      if (matches === maxMatches) {
+        document.getElementById('congrats-message').classList.remove('hidden');
+      }
     } else {
       setTimeout(function(){
         firstCardClicked.classList.remove('hidden');

@@ -5,6 +5,14 @@ body {
 .container{
   height: 100%;
 }
+#congrats-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: pink;
+  font-size: 10em;
+}
 .row {
   justify-content: center;
 }
