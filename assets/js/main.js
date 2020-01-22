@@ -14,6 +14,15 @@ var cards = [
   'mysql-logo',
   'node-logo',
   'php-logo',
+  'react-logo',
+  'css-logo',
+  'docker-logo',
+  'gitHub-logo',
+  'html-logo',
+  'js-logo',
+  'mysql-logo',
+  'node-logo',
+  'php-logo',
   'react-logo'
 ];
 
@@ -58,12 +67,15 @@ shuffle(cards);
 function shuffle(array) {
   var currentIndex = array.length
   var temporaryValue, randomIndex;
-  var newCard = document.querySelectorAll('card-front');
+  var newCard = document.querySelectorAll('.card-front');
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     --currentIndex;
     temporaryValue = array[currentIndex];
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
+  }
+  for (var i = 0; i < newCard.length; i++) {
+    newCard[i].classList.add(array[i]);
   }
 }
