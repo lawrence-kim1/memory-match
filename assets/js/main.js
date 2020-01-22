@@ -27,6 +27,7 @@ var cards = [
   'php-logo',
   'react-logo'
 ];
+createCards();
 shuffle(cards);
 gameField.addEventListener('click', handleClick);
 resetButton.addEventListener('click', resetGame);
@@ -70,9 +71,7 @@ function handleClick(event) {
   }
 }
 
-function shuffle(array) {
-  var currentIndex = array.length
-  var temporaryValue, randomIndex;
+function createCards() {
   for (var i = 0; i < 18; i++) {
     var newElement = document.createElement('div');
     document.getElementById('gameCards').appendChild(newElement);
@@ -88,6 +87,11 @@ function shuffle(array) {
     newCardFront.classList.add('card-front');
     newCardBack.classList.add('card-back');
   }
+}
+
+function shuffle(array) {
+  var currentIndex = array.length
+  var temporaryValue, randomIndex;
   var newCard = document.querySelectorAll('.card-front');
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
