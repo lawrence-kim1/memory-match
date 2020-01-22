@@ -73,6 +73,21 @@ function handleClick(event) {
 function shuffle(array) {
   var currentIndex = array.length
   var temporaryValue, randomIndex;
+  for (var i = 0; i < 18; i++) {
+    var newElement = document.createElement('div');
+    document.getElementById('gameCards').appendChild(newElement);
+    newElement.classList.add('col-2');
+    newElement.classList.add('card');
+  }
+  var frontBack = document.querySelectorAll('.card');
+  for (var k = 0; k < frontBack.length; k++) {
+    var newCardFront = document.createElement('div');
+    var newCardBack = document.createElement('div');
+    frontBack[k].appendChild(newCardFront);
+    frontBack[k].appendChild(newCardBack);
+    newCardFront.classList.add('card-front');
+    newCardBack.classList.add('card-back');
+  }
   var newCard = document.querySelectorAll('.card-front');
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -81,8 +96,8 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  for (var i = 0; i < newCard.length; i++) {
-    newCard[i].classList.add(array[i]);
+  for (var j = 0; j < newCard.length; j++) {
+    newCard[j].classList.add(array[j]);
   }
 }
 
