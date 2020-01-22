@@ -4,7 +4,9 @@ var firstCardClasses, secondCardClasses;
 var maxMatches = 9;
 var matches = 0;
 var gameField = document.getElementById('gameCards');
-gameField.addEventListener('click', handleClick);
+var games = document.getElementById('games').textContent;
+var attempts = document.getElementById('attempts').textContent;
+var resetButton = document.getElementById('reset');
 var cards = [
   'css-logo',
   'docker-logo',
@@ -25,6 +27,9 @@ var cards = [
   'php-logo',
   'react-logo'
 ];
+shuffle(cards);
+gameField.addEventListener('click', handleClick);
+resetButton.addEventListener('click', resetGame);
 
 function handleClick(event) {
   if (event.target.className.indexOf('card-back') === -1) {
@@ -39,7 +44,6 @@ function handleClick(event) {
     gameField.removeEventListener('click', handleClick);
     secondCardClicked = event.target;
     secondCardClasses = secondCardClicked.previousElementSibling.className;
-    var attempts = document.getElementById('attempts').textContent;
     attempts++;
     document.getElementById('attempts').textContent = attempts;
     if (firstCardClasses === secondCardClasses) {
@@ -50,6 +54,8 @@ function handleClick(event) {
       document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 100)) + '%';
       if (matches === maxMatches) {
         document.getElementById('congrats-message').classList.remove('hidden');
+        games++;
+        document.getElementById('games').textContent = games;
       }
     } else {
       document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 10000) / 100) + '%';
@@ -63,7 +69,7 @@ function handleClick(event) {
     }
   }
 }
-shuffle(cards);
+
 function shuffle(array) {
   var currentIndex = array.length
   var temporaryValue, randomIndex;
@@ -78,4 +84,28 @@ function shuffle(array) {
   for (var i = 0; i < newCard.length; i++) {
     newCard[i].classList.add(array[i]);
   }
+}
+
+function resetCards() {
+  var newCard = document.querySelectorAll('.card-front');
+  var backCard = document.querySelectorAll('.card-back')
+  for (var i = 0; i < newCard.length; i++) {
+    newCard[i].className = 'card-front';
+  }
+  for (i = 0; i < backCard.length; i++) {
+    backCard[i].classList.remove('hidden');
+  }
+}
+
+function resetGame(event) {
+  if (event.target.id.indexOf('reset') === -1) {
+    return;
+  }
+  attempts = 0;
+  document.getElementById('attempts').textContent = attempts;
+  matches = 0;
+  document.getElementById('accuracy').textContent = 0 + '%';
+  document.getElementById('congrats-message').classList.add('hidden');
+  resetCards();
+  shuffle(cards);
 }
