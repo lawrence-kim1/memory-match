@@ -7,6 +7,8 @@ var gameField = document.getElementById('gameCards');
 var games = document.getElementById('games').textContent;
 var attempts = document.getElementById('attempts').textContent;
 var resetButton = document.getElementById('reset');
+var minutes = document.getElementById('minutes').textContent;
+var seconds = document.getElementById('seconds').textContent;
 var cards = [
   'css-logo',
   'docker-logo',
@@ -27,6 +29,9 @@ var cards = [
   'php-logo',
   'react-logo'
 ];
+var timer = setInterval(timerStart, 1000);
+
+createCards();
 shuffle(cards);
 gameField.addEventListener('click', handleClick);
 resetButton.addEventListener('click', resetGame);
@@ -51,14 +56,16 @@ function handleClick(event) {
       firstCardClicked = null;
       secondCardClicked = null;
       matches++;
-      document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 100)) + '%';
+      displayAccuracy();
       if (matches === maxMatches) {
         document.getElementById('congrats-message').classList.remove('hidden');
         games++;
         document.getElementById('games').textContent = games;
+        clearInterval(timer);
+        finalTimer();
       }
     } else {
-      document.getElementById('accuracy').textContent = (Math.floor((matches / attempts) * 10000) / 100) + '%';
+      displayAccuracy();
       setTimeout(function(){
         firstCardClicked.classList.remove('hidden');
         secondCardClicked.classList.remove('hidden');
@@ -67,6 +74,24 @@ function handleClick(event) {
         secondCardClicked = null;
       }, 1500);
     }
+  }
+}
+
+function createCards() {
+  for (var i = 0; i < 18; i++) {
+    var newElement = document.createElement('div');
+    document.getElementById('gameCards').appendChild(newElement);
+    newElement.classList.add('col-2');
+    newElement.classList.add('card');
+  }
+  var frontBack = document.querySelectorAll('.card');
+  for (var k = 0; k < frontBack.length; k++) {
+    var newCardFront = document.createElement('div');
+    var newCardBack = document.createElement('div');
+    frontBack[k].appendChild(newCardFront);
+    frontBack[k].appendChild(newCardBack);
+    newCardFront.classList.add('card-front');
+    newCardBack.classList.add('card-back');
   }
 }
 
@@ -81,8 +106,8 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  for (var i = 0; i < newCard.length; i++) {
-    newCard[i].classList.add(array[i]);
+  for (var j = 0; j < newCard.length; j++) {
+    newCard[j].classList.add(array[j]);
   }
 }
 
@@ -108,4 +133,38 @@ function resetGame(event) {
   document.getElementById('congrats-message').classList.add('hidden');
   resetCards();
   shuffle(cards);
+  minutes = 0;
+  seconds = 0;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = '0' + seconds;
+  setInterval(timerStart, 1000);
+}
+
+function displayAccuracy() {
+  document.getElementById('accuracy').textContent = (Math.trunc((matches / attempts) * 10000) / 100) + '%';
+}
+
+function timerStart() {
+  if (seconds == 59) {
+    minutes++;
+    document.getElementById('minutes').textContent = minutes;
+    seconds = 0;
+    document.getElementById('seconds').textContent = '0' + seconds;
+  } else if (seconds >= 9) {
+    ++seconds;
+    document.getElementById('seconds').textContent = seconds;
+  } else {
+    ++seconds;
+    document.getElementById('seconds').textContent = '0' + seconds;
+  }
+}
+
+function finalTimer() {
+  var finalTime = document.createElement('p');
+  if (seconds >= 9) {
+    finalTime.textContent = 'Final Time: ' + minutes + ':' + seconds;
+  } else {
+    finalTime.textContent = 'Final Time: ' + minutes + ':0' + seconds;
+  }
+  document.getElementById('congrats-message').appendChild(finalTime);
 }
