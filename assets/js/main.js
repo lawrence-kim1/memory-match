@@ -7,6 +7,8 @@ var gameField = document.getElementById('gameCards');
 var games = document.getElementById('games').textContent;
 var attempts = document.getElementById('attempts').textContent;
 var resetButton = document.getElementById('reset');
+var minutes = document.getElementById('minutes').textContent;
+var seconds = document.getElementById('seconds').textContent;
 var cards = [
   'css-logo',
   'docker-logo',
@@ -27,6 +29,8 @@ var cards = [
   'php-logo',
   'react-logo'
 ];
+var timer = setInterval(timerStart, 1000);
+
 createCards();
 shuffle(cards);
 gameField.addEventListener('click', handleClick);
@@ -57,6 +61,8 @@ function handleClick(event) {
         document.getElementById('congrats-message').classList.remove('hidden');
         games++;
         document.getElementById('games').textContent = games;
+        clearInterval(timer);
+        finalTimer();
       }
     } else {
       displayAccuracy();
@@ -127,8 +133,38 @@ function resetGame(event) {
   document.getElementById('congrats-message').classList.add('hidden');
   resetCards();
   shuffle(cards);
+  minutes = 0;
+  seconds = 0;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = '0' + seconds;
+  setInterval(timerStart, 1000);
 }
 
 function displayAccuracy() {
   document.getElementById('accuracy').textContent = (Math.trunc((matches / attempts) * 10000) / 100) + '%';
+}
+
+function timerStart() {
+  if (seconds == 59) {
+    minutes++;
+    document.getElementById('minutes').textContent = minutes;
+    seconds = 0;
+    document.getElementById('seconds').textContent = '0' + seconds;
+  } else if (seconds >= 9) {
+    ++seconds;
+    document.getElementById('seconds').textContent = seconds;
+  } else {
+    ++seconds;
+    document.getElementById('seconds').textContent = '0' + seconds;
+  }
+}
+
+function finalTimer() {
+  var finalTime = document.createElement('p');
+  if (seconds >= 9) {
+    finalTime.textContent = 'Final Time: ' + minutes + ':' + seconds;
+  } else {
+    finalTime.textContent = 'Final Time: ' + minutes + ':0' + seconds;
+  }
+  document.getElementById('congrats-message').appendChild(finalTime);
 }
