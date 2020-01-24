@@ -1,12 +1,11 @@
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(27, 85, 80, 0.7)), url("../images/lfz-background.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(27, 85, 80, 0.7)), url("../images/music.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
-  margin: 0;
 }
 .container{
   height: 100%;
@@ -39,6 +38,7 @@ aside > div {
   align-items: center;
   text-align: center;
   border-radius: 50%;
+  border: 2px solid white;
   font-size: 1.5em;
 }
 main {
@@ -49,7 +49,8 @@ main {
 }
 main > div {
   height: 30%;
-  background-image: url("../images/lfz-card.jpg");
+  background-color: white;
+  background-image: url("../images/bass.webp");
   background-position: center;
   background-size: cover;
 }
@@ -61,50 +62,52 @@ main > div {
 .card-front, .card-back {
   height: 100%;
   width: 100%;
+  background-color: grey;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  border-radius: 20%;
+  border-radius: 10%;
+  border: 2px solid orangered;
 }
 .card-back{
-  background-image: url("../images/lfz-card.jpg");
+  background-image: url("../images/bass.webp");
   cursor: pointer;
   transition: 0.1s;
 }
 .card-back:hover {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1);
 }
 .card-back:active {
   transform: scale(1.1) rotate(-5deg);
 }
 /* Card Fronts */
-.js-logo {
-  background-image: url("../images/js-logo.png");
+.pandora {
+  background-image: url("../images/pandora.jpg");
 }
-.css-logo {
-  background-image: url("../images/css-logo.png");
+.spotify {
+  background-image: url("../images/spotify.png");
 }
-.html-logo {
-  background-image: url("../images/html-logo.png");
+.amazon {
+  background-image: url("../images/amazon.jpg");
 }
-.gitHub-logo {
-  background-image: url("../images/gitHub-logo.png");
+.google {
+  background-image: url("../images/google.png");
 }
-.docker-logo {
-  background-image: url("../images/docker-logo.jpg");
+.itunes {
+  background-image: url("../images/itunes.png");
 }
-.node-logo {
-  background-image: url("../images/node-logo.png");
+.tidal {
+  background-image: url("../images/tidal.jpg");
 }
-.mysql-logo {
-  background-image: url("../images/mysql-logo.jpg");
+.iheart {
+  background-image: url("../images/iheart.png");
 }
-.react-logo {
-  background-image: url("../images/react-logo.png");
+.livexlive {
+  background-image: url("../images/livexlive.png");
 }
-.php-logo {
-  background-image: url("../images/php-logo.jpeg");
+.deezer {
+  background-image: url("../images/deezer.png");
 }
 /* Congratulations Message styles */
 .congrats {
