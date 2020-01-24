@@ -9,6 +9,7 @@ var attempts = document.getElementById('attempts').textContent;
 var resetButton = document.getElementById('reset');
 var minutes = document.getElementById('minutes').textContent;
 var seconds = document.getElementById('seconds').textContent;
+var finalTime = document.createElement('p');
 var cards = [
   'css-logo',
   'docker-logo',
@@ -83,6 +84,8 @@ function createCards() {
     document.getElementById('gameCards').appendChild(newElement);
     newElement.classList.add('col-2');
     newElement.classList.add('card');
+    newElement.classList.add('col-4-small');
+    newElement.classList.add('col-3-medium');
   }
   var frontBack = document.querySelectorAll('.card');
   for (var k = 0; k < frontBack.length; k++) {
@@ -127,8 +130,8 @@ function resetGame(event) {
     return;
   }
   attempts = 0;
-  document.getElementById('attempts').textContent = attempts;
   matches = 0;
+  document.getElementById('attempts').textContent = attempts;
   document.getElementById('accuracy').textContent = 0 + '%';
   document.getElementById('congrats-message').classList.add('hidden');
   resetCards();
@@ -137,6 +140,7 @@ function resetGame(event) {
   seconds = 0;
   document.getElementById('minutes').textContent = minutes;
   document.getElementById('seconds').textContent = '0' + seconds;
+  document.getElementById('congrats-message').removeChild(finalTime);
   setInterval(timerStart, 1000);
 }
 
@@ -160,11 +164,25 @@ function timerStart() {
 }
 
 function finalTimer() {
-  var finalTime = document.createElement('p');
-  if (seconds >= 9) {
-    finalTime.textContent = 'Final Time: ' + minutes + ':' + seconds;
+  if (minutes > 1) {
+    finalTime.textContent = 'Final Time: ' + minutes + ' minutes' + ' and ';
+  } else if (minutes === 1) {
+    finalTime.textContent = 'Final Time: ' + minutes + ' minute' + ' and ';
   } else {
-    finalTime.textContent = 'Final Time: ' + minutes + ':0' + seconds;
+    finalTime.textContent = 'Final Time: ';
   }
+  secondsTimer();
   document.getElementById('congrats-message').appendChild(finalTime);
+}
+
+function secondsTimer() {
+  var secondsMessage;
+  if (seconds > 1) {
+    secondsMessage = seconds + ' seconds.';
+  } else if (seconds === 1) {
+    secondsMessage = seconds + ' second.';
+  } else if (seconds === 0) {
+    secondsMessage = 'no seconds!';
+  }
+  finalTime.textContent += secondsMessage;
 }
