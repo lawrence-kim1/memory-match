@@ -43,7 +43,7 @@ function handleClick(event) {
   }
   var hideCard = event.target;
   hideCard.className += ' hidden';
-  if (firstCardClicked == null) {
+  if (firstCardClicked === null) {
     firstCardClicked = event.target;
     firstCardClasses = firstCardClicked.previousElementSibling.className;
   } else {
@@ -149,7 +149,7 @@ function displayAccuracy() {
 }
 
 function timerStart() {
-  if (seconds == 59) {
+  if (seconds === 59) {
     minutes++;
     document.getElementById('minutes').textContent = minutes;
     seconds = 0;

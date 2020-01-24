@@ -188,6 +188,20 @@ button:active{
   display: none;
 }
 /* Media Queries */
+@media only screen and (min-width: 2048px) {
+  h1 {
+    font-size: 5em;
+  }
+  .congrats {
+    font-size: 20em;
+  }
+  aside > div {
+    font-size: 3em;
+  }
+  .container {
+    max-width: none;
+  }
+}
 @media only screen and (max-width: 1024px) and (orientation: landscape) {
   .congrats {
     font-size: 6em;
