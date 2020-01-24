@@ -11,24 +11,24 @@ var minutes = document.getElementById('minutes').textContent;
 var seconds = document.getElementById('seconds').textContent;
 var finalTime = document.createElement('p');
 var cards = [
-  'css-logo',
-  'docker-logo',
-  'gitHub-logo',
-  'html-logo',
-  'js-logo',
-  'mysql-logo',
-  'node-logo',
-  'php-logo',
-  'react-logo',
-  'css-logo',
-  'docker-logo',
-  'gitHub-logo',
-  'html-logo',
-  'js-logo',
-  'mysql-logo',
-  'node-logo',
-  'php-logo',
-  'react-logo'
+  'spotify',
+  'itunes',
+  'pandora',
+  'amazon',
+  'google',
+  'tidal',
+  'iheart',
+  'deezer',
+  'livexlive',
+  'spotify',
+  'itunes',
+  'pandora',
+  'amazon',
+  'google',
+  'tidal',
+  'iheart',
+  'deezer',
+  'livexlive'
 ];
 var timer = setInterval(timerStart, 1000);
 
