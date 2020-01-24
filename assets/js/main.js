@@ -79,7 +79,7 @@ function handleClick(event) {
 }
 
 function createCards() {
-  for (var i = 0; i < 18; i++) {
+  for (var i = 0; i < cards.length; i++) {
     var newElement = document.createElement('div');
     document.getElementById('gameCards').appendChild(newElement);
     newElement.classList.add('col-2');

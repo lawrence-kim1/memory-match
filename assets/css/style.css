@@ -1,11 +1,12 @@
 body {
-  background-image: url("../images/lfz-background.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(27, 85, 80, 0.7)), url("../images/lfz-background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 97vh;
+  height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  margin: 0;
 }
 .container{
   height: 100%;
@@ -124,7 +125,7 @@ main > div {
 .congrats > h1 {
   margin: 0 auto;
   font-size: 0.5em;
-  animation-duration: 2s;
+  animation-duration: 5s;
   animation-name: bounce;
   animation-iteration-count: infinite;
 }
@@ -137,11 +138,11 @@ main > div {
     font-size: 0.75em;
     margin-bottom: 75%;
   }
-  50% {
+  75% {
     margin-bottom: 30%;
     font-size: 0.5em;
   }
-  75% {
+  85% {
     margin-bottom: 100%;
   }
   100% {
@@ -149,7 +150,7 @@ main > div {
     margin-bottom: 75%;
   }
 }
-/* Play Again Button styles */
+/* Play Again Button */
 button {
   border: 0;
   border-radius: 20px;
@@ -158,14 +159,29 @@ button {
   font-size: 0.5em;
   transition: 0.5s;
   position: fixed;
+  animation-name: sliding;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 }
 button:hover{
   background-color: olive;
   color: rgb(253, 255, 133);
   transform: scale(0.75);
+  animation-play-state: paused;
 }
 button:active{
   background-color: red;
+}
+@keyframes sliding {
+  0% {
+    margin-left: 10%;
+  }
+  50% {
+    margin-left: -10%;
+  }
+  100% {
+    margin-left: 10%;
+  }
 }
 /* Adding hidden class for card interactivity */
 .hidden {
@@ -177,7 +193,7 @@ button:active{
     font-size: 6em;
   }
   aside > div {
-    font-size: 0.75em;
+    font-size: 1em;
   }
 }
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
