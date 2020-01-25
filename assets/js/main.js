@@ -3,13 +3,15 @@ var secondCardClicked = null;
 var firstCardClasses, secondCardClasses;
 var maxMatches = 9;
 var matches = 0;
+var startMenu = document.getElementById('start-message');
 var gameField = document.getElementById('gameCards');
 var games = document.getElementById('games').textContent;
 var attempts = document.getElementById('attempts').textContent;
-var resetButton = document.getElementById('reset');
 var minutes = document.getElementById('minutes').textContent;
 var seconds = document.getElementById('seconds').textContent;
 var finalTime = document.createElement('p');
+var resetButton = document.getElementById('reset');
+var timer;
 var cards = [
   'spotify',
   'itunes',
@@ -30,12 +32,8 @@ var cards = [
   'deezer',
   'livexlive'
 ];
-var timer = setInterval(timerStart, 1000);
 
-createCards();
-shuffle(cards);
-gameField.addEventListener('click', handleClick);
-resetButton.addEventListener('click', resetGame);
+startMenu.addEventListener('click', startGame);
 
 function handleClick(event) {
   if (event.target.className.indexOf('card-back') === -1) {
@@ -185,4 +183,13 @@ function secondsTimer() {
     secondsMessage = 'no seconds!';
   }
   finalTime.textContent += secondsMessage;
+}
+
+function startGame() {
+  timer = setInterval(timerStart, 1000);
+  document.getElementById('start-message').classList.add('hidden');
+  createCards();
+  shuffle(cards);
+  gameField.addEventListener('click', handleClick);
+  resetButton.addEventListener('click', resetGame);
 }

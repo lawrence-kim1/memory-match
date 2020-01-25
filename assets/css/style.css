@@ -21,7 +21,18 @@ body {
   justify-content: center;
 }
 h1 {
+  margin: 0 auto;
+  font-size: 0.5em;
+}
+header > h1 {
+  font-size: 2em;
+}
+p {
   margin: 0;
+  font-size: 0.2em;
+}
+aside > div > p {
+  font-size: 1em;
 }
 .main-title {
   color: lightcoral;
@@ -113,8 +124,8 @@ main > div {
 .deezer {
   background-image: url("../images/deezer.png");
 }
-/* Congratulations Message styles */
-.congrats {
+/* Start Message styles */
+.start, .congrats {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -125,20 +136,20 @@ main > div {
   transform: translate(-50%, -50%);
   height: 100vh;
   width: 100%;
-  background-image: linear-gradient(rgba(22, 55, 126, 0.7), rgba(22, 55, 126, 0.7));
   text-align: center;
   font-size: 10em;
 }
+.start {
+  background-image: linear-gradient(rgba(8, 39, 12, 0.9), rgba(8, 39, 12, 0.9));
+}
+/* Congratulations Message styles */
+.congrats {
+  background-image: linear-gradient(rgba(22, 55, 126, 0.7), rgba(22, 55, 126, 0.7));
+}
 .congrats > h1 {
-  margin: 0 auto;
-  font-size: 0.5em;
   animation-duration: 5s;
   animation-name: bounce;
   animation-iteration-count: infinite;
-}
-.congrats > p {
-  margin: 0;
-  font-size: 0.2em;
 }
 @keyframes bounce {
   0% {
@@ -159,16 +170,17 @@ main > div {
 }
 /* Play Again Button */
 button {
-  border: 0;
-  border-radius: 20px;
-  background-image: linear-gradient(rgba(105, 22, 126, 0.7), rgba(105, 22, 126, 0.7));
-  color: black;
   font-size: 0.5em;
+  box-shadow: 5px 5px black;
   transition: 0.5s;
-  position: fixed;
   animation-name: sliding;
   animation-duration: 5s;
   animation-iteration-count: infinite;
+  border: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(rgba(110, 126, 22, 0.7), rgba(110, 126, 22, 0.7));
+  color: black;
+  position: fixed;
 }
 button:hover{
   background-color: olive;
