@@ -6,6 +6,7 @@ body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  text-shadow: 2px 2px black;
 }
 .container{
   height: 100%;
@@ -21,6 +22,9 @@ body {
 }
 h1 {
   margin: 0;
+}
+.main-title {
+  color: lightcoral;
 }
 aside {
   display: flex;
