@@ -63,11 +63,38 @@ main {
   height: 100%;
 }
 main > div {
-  height: 30%;
   background-color: white;
   background-image: url("../images/bass.webp");
   background-position: center;
   background-size: cover;
+}
+/* Select Game Size Styles */
+select {
+  font-size: 0.3em;
+  background: rgb(43, 35, 68);
+  border: none;
+  color: inherit;
+}
+button {
+  font-size: 0.25em;
+  box-shadow: 5px 5px black;
+  transition: 0.5s;
+  animation-name: sliding;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  border: 0;
+  border-radius: 20px;
+  background-image: linear-gradient(rgba(110, 126, 22, 0.7), rgba(110, 126, 22, 0.7));
+  color: black;
+}
+button:hover{
+  background-color: olive;
+  color: rgb(253, 255, 133);
+  transform: scale(0.75);
+  animation-play-state: paused;
+}
+button:active{
+  background-color: red;
 }
 /* Card Styles */
 .card {
@@ -124,6 +151,16 @@ main > div {
 .deezer {
   background-image: url("../images/deezer.png");
 }
+/* Card Heights */
+.small-height {
+  height: 45%;
+}
+.medium-height {
+  height: 30%;
+}
+.large-height {
+  height: 30%;
+}
 /* Start Message styles */
 .start, .congrats {
   position: fixed;
@@ -151,45 +188,23 @@ main > div {
   animation-name: bounce;
   animation-iteration-count: infinite;
 }
+/* Animations */
 @keyframes bounce {
   0% {
     font-size: 0.75em;
-    margin-bottom: 75%;
+    transform: translateY(-10em);
   }
   75% {
-    margin-bottom: 30%;
+    transform: translateY(0em);
     font-size: 0.5em;
   }
   95% {
-    margin-bottom: 100%;
+    transform: translateY(-2em);
   }
   100% {
     font-size: 0.75em;
-    margin-bottom: 75%;
+    transform: translateY(-10em);
   }
-}
-/* Play Again Button */
-button {
-  font-size: 0.5em;
-  box-shadow: 5px 5px black;
-  transition: 0.5s;
-  animation-name: sliding;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  border: 0;
-  border-radius: 20px;
-  background-image: linear-gradient(rgba(110, 126, 22, 0.7), rgba(110, 126, 22, 0.7));
-  color: black;
-  position: fixed;
-}
-button:hover{
-  background-color: olive;
-  color: rgb(253, 255, 133);
-  transform: scale(0.75);
-  animation-play-state: paused;
-}
-button:active{
-  background-color: red;
 }
 @keyframes sliding {
   0% {
@@ -233,7 +248,7 @@ button:active{
   .col-3-medium {
     width: 24%;
   }
-  main > div {
+  .large-height {
     height: 18%;
   }
   .congrats {
@@ -247,7 +262,7 @@ button:active{
   .col-4-small {
     width: 32%;
   }
-  main > div {
+  .large-height {
     height: 15%;
   }
   .congrats {
@@ -255,5 +270,19 @@ button:active{
   }
   aside > div {
     font-size: 0.75em;
+  }
+}
+@media only screen and (orientation: portrait) {
+  .small-height {
+    height: 30%;
+  }
+  .col-6-ldscape {
+    width: 48%;
+  }
+  .medium-height {
+    height: 22%;
+  }
+  .col-4-ldscape {
+    width: 32%;
   }
 }

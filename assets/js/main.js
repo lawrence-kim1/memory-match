@@ -22,8 +22,12 @@ var cards = [
   'deezer',
   'livexlive',
 ];
-var fullDeck = [];
+var fullDeck;
 var startButton = document.getElementById('start-game');
+
+startButton.addEventListener('click', getSizeOfBoard);
+startButton.addEventListener('click', startGame);
+
 
 function getSizeOfBoard(e) {
   var selectElement = e.target.previousElementSibling;
@@ -35,15 +39,14 @@ function getSizeOfBoard(e) {
   } else if (boardSize === 'lg-board') {
     cardTotal = 9;
   }
+  differentCards(cards);
+  fullDeck = [];
   for (var i = 0; i < cardTotal; i++) {
     for (var j = 0; j <= 1; j++) {
       fullDeck.push(cards[i]);
     }
   }
 }
-
-startButton.addEventListener('click', getSizeOfBoard);
-startButton.addEventListener('click', startGame);
 
 function handleClick(event) {
   if (event.target.className.indexOf('card-back') === -1) {
@@ -92,15 +95,18 @@ function createCards() {
     document.getElementById('gameCards').appendChild(newElement);
     newElement.classList.add('card');
     if (fullDeck.length === 6) {
-      newElement.classList.add('col-6');
-      newElement.classList.add('col-4-ldscape');
-    } else if (fullDeck.length === 12) {
       newElement.classList.add('col-4');
-      newElement.classList.add('col-3-ldscape');
+      newElement.classList.add('col-6-ldscape');
+      newElement.classList.add('small-height');
+    } else if (fullDeck.length === 12) {
+      newElement.classList.add('col-3');
+      newElement.classList.add('col-4-ldscape');
+      newElement.classList.add('medium-height');
     } else if (fullDeck.length === 18) {
       newElement.classList.add('col-2');
       newElement.classList.add('col-4-small');
       newElement.classList.add('col-3-medium');
+      newElement.classList.add('large-height');
     }
   }
   var frontBack = document.querySelectorAll('.card');
@@ -114,10 +120,17 @@ function createCards() {
   }
 }
 
-function shuffle(array) {
-  var currentIndex = array.length
-  var temporaryValue, randomIndex;
+function shuffle() {
+  differentCards(fullDeck);
   var newCard = document.querySelectorAll('.card-front');
+  for (var j = 0; j < newCard.length; j++) {
+    newCard[j].classList.add(fullDeck[j]);
+  }
+}
+
+function differentCards(array) {
+  var currentIndex = array.length;
+  var temporaryValue, randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     --currentIndex;
@@ -125,19 +138,17 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-  for (var j = 0; j < newCard.length; j++) {
-    newCard[j].classList.add(array[j]);
-  }
 }
 
 function resetCards() {
-  var newCard = document.querySelectorAll('.card-front');
-  var backCard = document.querySelectorAll('.card-back')
-  for (var i = 0; i < newCard.length; i++) {
-    newCard[i].className = 'card-front';
-  }
-  for (i = 0; i < backCard.length; i++) {
-    backCard[i].classList.remove('hidden');
+  var newBool = document.getElementById('gameCards').hasChildNodes();
+  while (newBool) {
+    var deleteElement = document.querySelector('.card');
+    if (deleteElement) {
+      document.getElementById('gameCards').removeChild(deleteElement);
+    } else {
+      break;
+    }
   }
 }
 
@@ -151,13 +162,10 @@ function resetGame(event) {
   document.getElementById('accuracy').textContent = 0 + '%';
   document.getElementById('congrats-message').classList.add('hidden');
   resetCards();
-  shuffle(cards);
-  minutes = 0;
-  seconds = 0;
-  document.getElementById('minutes').textContent = minutes;
-  document.getElementById('seconds').textContent = '0' + seconds;
+  createCards();
+  shuffle();
   document.getElementById('congrats-message').removeChild(finalTime);
-  setInterval(timerStart, 1000);
+  timer = setInterval(timerStart, 1000);
 }
 
 function displayAccuracy() {
@@ -181,11 +189,11 @@ function timerStart() {
 
 function finalTimer() {
   if (minutes > 1) {
-    finalTime.textContent = 'Final Time: ' + minutes + ' minutes' + ' and ';
+    finalTime.textContent = 'Total Time: ' + minutes + ' minutes' + ' and ';
   } else if (minutes === 1) {
-    finalTime.textContent = 'Final Time: ' + minutes + ' minute' + ' and ';
+    finalTime.textContent = 'Total Time: ' + minutes + ' minute' + ' and ';
   } else {
-    finalTime.textContent = 'Final Time: ';
+    finalTime.textContent = 'Total Time: ';
   }
   secondsTimer();
   document.getElementById('congrats-message').appendChild(finalTime);
@@ -207,7 +215,8 @@ function startGame() {
   timer = setInterval(timerStart, 1000);
   document.getElementById('start-message').classList.add('hidden');
   createCards();
-  shuffle(fullDeck);
+  shuffle();
   gameField.addEventListener('click', handleClick);
+  resetButton.addEventListener('click', getSizeOfBoard);
   resetButton.addEventListener('click', resetGame);
 }
