@@ -1,9 +1,8 @@
 var firstCardClicked = null;
 var secondCardClicked = null;
 var firstCardClasses, secondCardClasses;
-var maxMatches = 9;
+var cardTotal;
 var matches = 0;
-var startMenu = document.getElementById('start-message');
 var gameField = document.getElementById('gameCards');
 var games = document.getElementById('games').textContent;
 var attempts = document.getElementById('attempts').textContent;
@@ -22,18 +21,29 @@ var cards = [
   'iheart',
   'deezer',
   'livexlive',
-  'spotify',
-  'itunes',
-  'pandora',
-  'amazon',
-  'google',
-  'tidal',
-  'iheart',
-  'deezer',
-  'livexlive'
 ];
+var fullDeck = [];
+var startButton = document.getElementById('start-game');
 
-startMenu.addEventListener('click', startGame);
+function getSizeOfBoard(e) {
+  var selectElement = e.target.previousElementSibling;
+  var boardSize = selectElement.value;
+  if (boardSize === 'sm-board') {
+    cardTotal = 3;
+  } else if (boardSize === 'md-board') {
+    cardTotal = 6;
+  } else if (boardSize === 'lg-board') {
+    cardTotal = 9;
+  }
+  for (var i = 0; i < cardTotal; i++) {
+    for (var j = 0; j <= 1; j++) {
+      fullDeck.push(cards[i]);
+    }
+  }
+}
+
+startButton.addEventListener('click', getSizeOfBoard);
+startButton.addEventListener('click', startGame);
 
 function handleClick(event) {
   if (event.target.className.indexOf('card-back') === -1) {
@@ -56,7 +66,7 @@ function handleClick(event) {
       secondCardClicked = null;
       matches++;
       displayAccuracy();
-      if (matches === maxMatches) {
+      if (matches === cardTotal) {
         document.getElementById('congrats-message').classList.remove('hidden');
         games++;
         document.getElementById('games').textContent = games;
@@ -77,13 +87,21 @@ function handleClick(event) {
 }
 
 function createCards() {
-  for (var i = 0; i < cards.length; i++) {
+  for (var i = 0; i < fullDeck.length; i++) {
     var newElement = document.createElement('div');
     document.getElementById('gameCards').appendChild(newElement);
-    newElement.classList.add('col-2');
     newElement.classList.add('card');
-    newElement.classList.add('col-4-small');
-    newElement.classList.add('col-3-medium');
+    if (fullDeck.length === 6) {
+      newElement.classList.add('col-6');
+      newElement.classList.add('col-4-ldscape');
+    } else if (fullDeck.length === 12) {
+      newElement.classList.add('col-4');
+      newElement.classList.add('col-3-ldscape');
+    } else if (fullDeck.length === 18) {
+      newElement.classList.add('col-2');
+      newElement.classList.add('col-4-small');
+      newElement.classList.add('col-3-medium');
+    }
   }
   var frontBack = document.querySelectorAll('.card');
   for (var k = 0; k < frontBack.length; k++) {
@@ -189,7 +207,7 @@ function startGame() {
   timer = setInterval(timerStart, 1000);
   document.getElementById('start-message').classList.add('hidden');
   createCards();
-  shuffle(cards);
+  shuffle(fullDeck);
   gameField.addEventListener('click', handleClick);
   resetButton.addEventListener('click', resetGame);
 }
