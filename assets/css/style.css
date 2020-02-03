@@ -125,7 +125,7 @@ button:active{
 }
 .card-animation {
   animation-name: cardFlyToFront;
-  animation-duration: 10s;
+  animation-duration: 5s;
   animation-iteration-count: 1;
 }
 /* Card Fronts */
@@ -190,8 +190,8 @@ button:active{
   background-image: url(../images/headphones.png);
   background-repeat: repeat;
   animation-name: slideOffScreen;
-  animation-duration: 20s;
-  animation-iteration-count: infinite;
+  animation-duration: 60s;
+  animation-iteration-count: 1;
 }
 /* Congratulations Message styles */
 .congrats {
@@ -241,10 +241,16 @@ button:active{
 }
 @keyframes cardFlyToFront {
   0% {
-    margin-top: 0%;
+    transform: translate3d(0, 0, 0);
+  }
+  10% {
+    transform: rotateX(90deg);
+  }
+  20% {
+    transform: translateY(50em);
   }
   100% {
-    margin-top: 300%;
+    transform: translateY(0);
   }
 }
 /* Adding hidden class for card interactivity */
