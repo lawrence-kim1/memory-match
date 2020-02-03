@@ -70,11 +70,17 @@ function handleClick(event) {
       matches++;
       displayAccuracy();
       if (matches === cardTotal) {
-        document.getElementById('congrats-message').classList.remove('hidden');
+        var cardFronts = document.querySelectorAll('.card');
+        for (var i = 0; i < cardFronts.length; i++) {
+          cardFronts[i].classList.add('card-animation');
+        }
         games++;
         document.getElementById('games').textContent = games;
         clearInterval(timer);
         finalTimer();
+        setTimeout(function () {
+          document.getElementById('congrats-message').classList.remove('hidden');
+          }, 5000);
       }
     } else {
       displayAccuracy();
