@@ -123,6 +123,11 @@ button:active{
 .card-back:active {
   transform: scale(1.1) rotate(-5deg);
 }
+.card-animation {
+  animation-name: cardFlyToFront;
+  animation-duration: 10s;
+  animation-iteration-count: 1;
+}
 /* Card Fronts */
 .pandora {
   background-image: url("../images/pandora.jpg");
@@ -179,6 +184,15 @@ button:active{
 .start {
   background-image: linear-gradient(rgba(8, 39, 12, 0.9), rgba(8, 39, 12, 0.9));
 }
+.headphone {
+  width: 1000%;
+  height: 200px;
+  background-image: url(../images/headphones.png);
+  background-repeat: repeat;
+  animation-name: slideOffScreen;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+}
 /* Congratulations Message styles */
 .congrats {
   background-image: linear-gradient(rgba(22, 55, 126, 0.7), rgba(22, 55, 126, 0.7));
@@ -217,6 +231,22 @@ button:active{
     margin-left: 10%;
   }
 }
+@keyframes slideOffScreen {
+  from {
+    transform: translateX(-5em);
+  }
+  to {
+    transform: translateX(5em);
+  }
+}
+@keyframes cardFlyToFront {
+  0% {
+    margin-top: 0%;
+  }
+  100% {
+    margin-top: 300%;
+  }
+}
 /* Adding hidden class for card interactivity */
 .hidden {
   display: none;
@@ -243,6 +273,9 @@ button:active{
   aside > div {
     font-size: 1em;
   }
+  .headphone {
+    display: none;
+  }
 }
 @media only screen and (max-width: 1024px) and (orientation: portrait) {
   .col-3-medium {
@@ -256,6 +289,9 @@ button:active{
   }
   aside > div {
     font-size: 1em;
+  }
+  .headphone {
+    display: none;
   }
 }
 @media only screen and (max-width: 600px) {
