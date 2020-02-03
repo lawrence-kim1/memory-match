@@ -61,12 +61,7 @@ main {
   justify-content: space-evenly;
   flex-wrap: wrap;
   height: 100%;
-}
-main > div {
-  background-color: white;
-  background-image: url("../images/bass.webp");
-  background-position: center;
-  background-size: cover;
+  overflow: hidden;
 }
 /* Select Game Size Styles */
 select {
@@ -104,18 +99,20 @@ button:active{
 .card-front, .card-back {
   height: 100%;
   width: 100%;
-  background-color: grey;
-  background-size: cover;
+  background-color: white;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
   border-radius: 10%;
-  border: 2px solid orangered;
+}
+.card-front {
+  background-size: cover;
 }
 .card-back{
   background-image: url("../images/bass.webp");
   cursor: pointer;
   transition: 0.1s;
+  background-size: contain;
 }
 .card-back:hover {
   transform: scale(1.1);
@@ -124,7 +121,7 @@ button:active{
   transform: scale(1.1) rotate(-5deg);
 }
 .card-animation {
-  animation-name: cardFlyToFront;
+  animation-name: cardFlyDown;
   animation-duration: 5s;
   animation-iteration-count: 1;
 }
@@ -189,9 +186,14 @@ button:active{
   height: 200px;
   background-image: url(../images/headphones.png);
   background-repeat: repeat;
-  animation-name: slideOffScreen;
   animation-duration: 60s;
   animation-iteration-count: 1;
+}
+.top {
+  animation-name: slideOffScreenRight;
+}
+.bottom {
+  animation-name: slideOffScreenLeft;
 }
 /* Congratulations Message styles */
 .congrats {
@@ -231,7 +233,7 @@ button:active{
     margin-left: 10%;
   }
 }
-@keyframes slideOffScreen {
+@keyframes slideOffScreenRight {
   from {
     transform: translateX(-5em);
   }
@@ -239,7 +241,15 @@ button:active{
     transform: translateX(5em);
   }
 }
-@keyframes cardFlyToFront {
+@keyframes slideOffScreenLeft {
+  from {
+    transform: translateX(5em);
+  }
+  to {
+    transform: translateX(-5em);
+  }
+}
+@keyframes cardFlyDown {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -248,8 +258,10 @@ button:active{
   }
   20% {
     transform: translateY(50em);
+    opacity: 0;
   }
   100% {
+    opacity: 1;
     transform: translateY(0);
   }
 }
