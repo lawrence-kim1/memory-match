@@ -53,14 +53,16 @@ function handleClick(event) {
     return;
   }
   var hideCard = event.target;
-  hideCard.className += ' hidden';
+  hideCard.classList.add('hidden');
   if (firstCardClicked === null) {
     firstCardClicked = event.target;
     firstCardClasses = firstCardClicked.previousElementSibling.className;
+    hideCard.previousElementSibling.classList.add('card-slide-up');
   } else {
     gameField.removeEventListener('click', handleClick);
     secondCardClicked = event.target;
     secondCardClasses = secondCardClicked.previousElementSibling.className;
+    hideCard.previousElementSibling.classList.add('card-slide-down');
     attempts++;
     document.getElementById('attempts').textContent = attempts;
     if (firstCardClasses === secondCardClasses) {

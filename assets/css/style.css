@@ -187,7 +187,7 @@ button:active{
   background-image: url(../images/headphones.png);
   background-repeat: repeat;
   animation-duration: 60s;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
 }
 .top {
   animation-name: slideOffScreenRight;
