@@ -1,17 +1,17 @@
-var firstCardClicked = null;
-var secondCardClicked = null;
-var firstCardClasses, secondCardClasses;
-var cardTotal;
-var matches = 0;
-var gameField = document.getElementById('gameCards');
-var games = document.getElementById('games').textContent;
-var attempts = document.getElementById('attempts').textContent;
-var minutes = document.getElementById('minutes').textContent;
-var seconds = document.getElementById('seconds').textContent;
-var finalTime = document.createElement('p');
-var resetButton = document.getElementById('reset');
-var timer;
-var cards = [
+let firstCardClicked = null;
+let secondCardClicked = null;
+let firstCardClasses, secondCardClasses;
+let cardTotal;
+let matches = 0;
+const gameField = document.getElementById('gameCards');
+let games = document.getElementById('games').textContent;
+let attempts = document.getElementById('attempts').textContent;
+let minutes = document.getElementById('minutes').textContent;
+let seconds = document.getElementById('seconds').textContent;
+let finalTime = document.createElement('p');
+const resetButton = document.getElementById('reset');
+let timer;
+const cards = [
   'spotify',
   'itunes',
   'pandora',
@@ -22,16 +22,16 @@ var cards = [
   'deezer',
   'livexlive',
 ];
-var fullDeck;
-var startButton = document.getElementById('start-game');
+let fullDeck;
+const startButton = document.getElementById('start-game');
 
 startButton.addEventListener('click', getSizeOfBoard);
 startButton.addEventListener('click', startGame);
 
 
 function getSizeOfBoard(e) {
-  var selectElement = e.target.previousElementSibling;
-  var boardSize = selectElement.value;
+  const selectElement = e.target.previousElementSibling;
+  const boardSize = selectElement.value;
   if (boardSize === 'sm-board') {
     cardTotal = 3;
   } else if (boardSize === 'md-board') {
@@ -41,8 +41,8 @@ function getSizeOfBoard(e) {
   }
   differentCards(cards);
   fullDeck = [];
-  for (var i = 0; i < cardTotal; i++) {
-    for (var j = 0; j <= 1; j++) {
+  for (let i = 0; i < cardTotal; i++) {
+    for (let j = 0; j <= 1; j++) {
       fullDeck.push(cards[i]);
     }
   }
@@ -52,7 +52,7 @@ function handleClick(event) {
   if (event.target.className.indexOf('card-back') === -1) {
     return;
   }
-  var hideCard = event.target;
+  const hideCard = event.target;
   hideCard.classList.add('hidden');
   if (firstCardClicked === null) {
     firstCardClicked = event.target;
@@ -70,8 +70,8 @@ function handleClick(event) {
       matches++;
       displayAccuracy();
       if (matches === cardTotal) {
-        var cardFronts = document.querySelectorAll('.card');
-        for (var i = 0; i < cardFronts.length; i++) {
+        const cardFronts = document.querySelectorAll('.card');
+        for (let i = 0; i < cardFronts.length; i++) {
           cardFronts[i].classList.add('card-animation');
         }
         games++;
@@ -96,8 +96,8 @@ function handleClick(event) {
 }
 
 function createCards() {
-  for (var i = 0; i < fullDeck.length; i++) {
-    var newElement = document.createElement('div');
+  for (let i = 0; i < fullDeck.length; i++) {
+    const newElement = document.createElement('div');
     document.getElementById('gameCards').appendChild(newElement);
     newElement.classList.add('card');
     if (fullDeck.length === 6) {
@@ -115,10 +115,10 @@ function createCards() {
       newElement.classList.add('large-height');
     }
   }
-  var frontBack = document.querySelectorAll('.card');
-  for (var k = 0; k < frontBack.length; k++) {
-    var newCardFront = document.createElement('div');
-    var newCardBack = document.createElement('div');
+  const frontBack = document.querySelectorAll('.card');
+  for (let k = 0; k < frontBack.length; k++) {
+    const newCardFront = document.createElement('div');
+    const newCardBack = document.createElement('div');
     frontBack[k].appendChild(newCardFront);
     frontBack[k].appendChild(newCardBack);
     newCardFront.classList.add('card-front');
@@ -128,15 +128,15 @@ function createCards() {
 
 function shuffle() {
   differentCards(fullDeck);
-  var newCard = document.querySelectorAll('.card-front');
-  for (var j = 0; j < newCard.length; j++) {
+  const newCard = document.querySelectorAll('.card-front');
+  for (let j = 0; j < newCard.length; j++) {
     newCard[j].classList.add(fullDeck[j]);
   }
 }
 
 function differentCards(array) {
-  var currentIndex = array.length;
-  var temporaryValue, randomIndex;
+  let currentIndex = array.length;
+  let temporaryValue, randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     --currentIndex;
@@ -147,9 +147,9 @@ function differentCards(array) {
 }
 
 function resetCards() {
-  var newBool = document.getElementById('gameCards').hasChildNodes();
+  const newBool = document.getElementById('gameCards').hasChildNodes();
   while (newBool) {
-    var deleteElement = document.querySelector('.card');
+    const deleteElement = document.querySelector('.card');
     if (deleteElement) {
       document.getElementById('gameCards').removeChild(deleteElement);
     } else {
@@ -203,7 +203,7 @@ function finalTimer() {
 }
 
 function secondsTimer() {
-  var secondsMessage;
+  let secondsMessage;
   if (seconds > 1) {
     secondsMessage = seconds + ' seconds.';
   } else if (seconds === 1) {
