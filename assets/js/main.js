@@ -57,12 +57,10 @@ function handleClick(event) {
   if (firstCardClicked === null) {
     firstCardClicked = event.target;
     firstCardClasses = firstCardClicked.previousElementSibling.className;
-    hideCard.previousElementSibling.classList.add('card-slide-up');
   } else {
     gameField.removeEventListener('click', handleClick);
     secondCardClicked = event.target;
     secondCardClasses = secondCardClicked.previousElementSibling.className;
-    hideCard.previousElementSibling.classList.add('card-slide-down');
     attempts++;
     document.getElementById('attempts').textContent = attempts;
     if (firstCardClasses === secondCardClasses) {
@@ -182,16 +180,13 @@ function displayAccuracy() {
 
 function timerStart() {
   if (seconds === 59) {
-    minutes++;
-    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('minutes').textContent = ++minutes;
     seconds = 0;
     document.getElementById('seconds').textContent = '0' + seconds;
   } else if (seconds >= 9) {
-    ++seconds;
-    document.getElementById('seconds').textContent = seconds;
+    document.getElementById('seconds').textContent = ++seconds;
   } else {
-    ++seconds;
-    document.getElementById('seconds').textContent = '0' + seconds;
+    document.getElementById('seconds').textContent = '0' + ++seconds;
   }
 }
 
