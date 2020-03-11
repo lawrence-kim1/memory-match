@@ -19,3 +19,4 @@ Try the application live at [http://memory-match.lawrkim.com](http://memory-matc
 - Players can play the game again at the same or different difficulty
 
 ## Preview
+![Memory Match](assets/images/memory-match.gif)
