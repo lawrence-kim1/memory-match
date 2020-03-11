@@ -1,10 +1,18 @@
 # Memory Match
 
+## Description
+Memory Match is a simple card matching game stylized to include popular music streaming providers.
+
+## [Live Website Link](http://memory-match.lawrkim.com)
+
+## Technologies Used
+Memory Match was built using HTML, CSS, and vanilla JavaScript.
+
 ## Functionality Overview
 1. Memory match is a matching game in which a player attempts to match the images contained on "playing cards".
-2. There are a total of 18 cards:
+2. There are a total of 6, 12, or 18 cards:
     - Each card contains 1 of 9 images
-    - There are two of each image allowing for 9 total matches
+    - There are two of each image allowing for 3, 6, or 9 total matches
 3. The following stats are tracked:
     - Total number of games played
     - Total number of matches for the current game
@@ -28,6 +36,9 @@
     - A button is provided which can reset the game by clicking on it.
 10. Resetting the game performs the following actions:
     - All cards are flipped back over
-    - The number of games played is increased
     - The total number of matches are reset
-    - The accuracy percentage is reset to 0%
+11. Certain statistics are tracked after each game:
+    - The number of games played
+    - The cumulative accuracy across all games
+
+
