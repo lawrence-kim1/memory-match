@@ -1,28 +1,5 @@
 # Memory Match
 
-> - Maintained by: `codingcodymiller`
-
-
-## Project Setup
-
-Before starting on this project, you will need to **fork** and then **clone** this repository into your `lfz` folder on your current development environment.
-
-1. Fork this repository from LearningFuze
-    - Click on the <kbd>**Fork**</kbd> button at the top right of the page.
-    - Select your Github user name to complete the fork
-
-2. Clone this repository to your development environment
-    - In your terminal, navigate to the location of your `lfz` folder
-    - `cd ~/lfz` or `cd ~/Desktop/lfz`
-    - `git clone https://github.com/[Your User Name]/memory_match.git`
-
-3. Navigate into the `memory_match` directory
-    - `cd memory_match`
-    - You are now ready to get started!
-    - If you are not in the proper directory, navigate to the `lfz` folder, if you're not sure how, contact an instructor.
-
-
-
 ## Functionality Overview
 1. Memory match is a matching game in which a player attempts to match the images contained on "playing cards".
 2. There are a total of 18 cards:
@@ -54,19 +31,3 @@ Before starting on this project, you will need to **fork** and then **clone** th
     - The number of games played is increased
     - The total number of matches are reset
     - The accuracy percentage is reset to 0%
-
-
-
-## Features
-1. Below is the breakdown of feature sets you need to complete in order to finish the MVP (Minimal Viable Product).
-
-- User Can View Game - [Instructions](guides/features/skeleton.md)
-- User Can Flip Cards - [Instructions](guides/features/flip-one-card.md)
-- User can Match Two Cards - [Instructions](guides/features/match-two-cards.md)
-- User Can Win Game - [Instructions](guides/features/win-condition.md)
-- User Can View Stats - [Instructions](guides/features/tracking-stats.md)
-- User Can Reset Game and Play Again - [Instructions](guides/features/resetting-game.md)
-
-### Bonus Feature / Challenge
-- Shuffling cards
-- Dynamically creating cards
