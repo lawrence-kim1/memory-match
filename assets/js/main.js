@@ -1,7 +1,10 @@
 let firstCardClicked = null;
 let secondCardClicked = null;
-let firstCardClasses, secondCardClasses;
-let cardTotal;
+let firstCardClasses,
+    secondCardClasses,
+    cardTotal,
+    timer,
+    fullDeck = null;
 let matches = 0;
 const gameField = document.getElementById('gameCards');
 let games = document.getElementById('games').textContent;
@@ -10,7 +13,7 @@ let minutes = document.getElementById('minutes').textContent;
 let seconds = document.getElementById('seconds').textContent;
 let finalTime = document.createElement('p');
 const resetButton = document.getElementById('reset');
-let timer;
+const startButton = document.getElementById('start-game');
 const cards = [
   'spotify',
   'itunes',
@@ -22,22 +25,22 @@ const cards = [
   'deezer',
   'livexlive',
 ];
-let fullDeck;
-const startButton = document.getElementById('start-game');
-
-startButton.addEventListener('click', getSizeOfBoard);
-startButton.addEventListener('click', startGame);
-
 
 function getSizeOfBoard(e) {
   const selectElement = e.target.previousElementSibling;
   const boardSize = selectElement.value;
-  if (boardSize === 'sm-board') {
-    cardTotal = 3;
-  } else if (boardSize === 'md-board') {
-    cardTotal = 6;
-  } else if (boardSize === 'lg-board') {
-    cardTotal = 9;
+  switch (boardSize) {
+    case 'sm-board':
+      cardTotal = 3;
+      break;
+    case 'md-board':
+      cardTotal = 6;
+      break;
+    case 'lg-board':
+      cardTotal= 9;
+      break;
+    default:
+      break;
   }
   differentCards(cards);
   fullDeck = [];
@@ -97,22 +100,15 @@ function handleClick(event) {
 
 function createCards() {
   for (let i = 0; i < fullDeck.length; i++) {
-    const newElement = document.createElement('div');
-    document.getElementById('gameCards').appendChild(newElement);
-    newElement.classList.add('card');
+    const newCardContainer = document.createElement('div');
+    document.getElementById('gameCards').appendChild(newCardContainer);
+    newCardContainer.classList.add('card');
     if (fullDeck.length === 6) {
-      newElement.classList.add('col-4');
-      newElement.classList.add('col-6-ldscape');
-      newElement.classList.add('small-height');
+      newCardContainer.classList.add('col-4', 'col-6-ldscape', 'small-height');
     } else if (fullDeck.length === 12) {
-      newElement.classList.add('col-3');
-      newElement.classList.add('col-4-ldscape');
-      newElement.classList.add('medium-height');
+      newCardContainer.classList.add('col-3', 'col-4-ldscape', 'medium-height');
     } else if (fullDeck.length === 18) {
-      newElement.classList.add('col-2');
-      newElement.classList.add('col-4-small');
-      newElement.classList.add('col-3-medium');
-      newElement.classList.add('large-height');
+      newCardContainer.classList.add('col-2', 'col-4-small', 'col-3-medium', 'large-height');
     }
   }
   const frontBack = document.querySelectorAll('.card');
@@ -223,3 +219,6 @@ function startGame() {
   resetButton.addEventListener('click', getSizeOfBoard);
   resetButton.addEventListener('click', resetGame);
 }
+
+startButton.addEventListener('click', getSizeOfBoard);
+startButton.addEventListener('click', startGame);
