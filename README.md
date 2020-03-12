@@ -4,7 +4,7 @@
 Memory Match is a simple card matching game stylized to include popular music streaming providers.
 
 ## Live Website
-Try the application live at [http://memory-match.lawrkim.com](http://memory-match.lawrkim.com)
+Try the application live at [https://memory-match.lawrkim.com](https://memory-match.lawrkim.com)
 
 ## Technologies Used
 - HTML5
