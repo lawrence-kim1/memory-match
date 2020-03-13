@@ -103,12 +103,18 @@ function createCards() {
     const newCardContainer = document.createElement('div');
     document.getElementById('gameCards').appendChild(newCardContainer);
     newCardContainer.classList.add('card');
-    if (fullDeck.length === 6) {
-      newCardContainer.classList.add('col-4', 'col-6-ldscape', 'small-height');
-    } else if (fullDeck.length === 12) {
-      newCardContainer.classList.add('col-3', 'col-4-ldscape', 'medium-height');
-    } else if (fullDeck.length === 18) {
-      newCardContainer.classList.add('col-2', 'col-4-small', 'col-3-medium', 'large-height');
+    switch (fullDeck.length) {
+      case 6:
+        newCardContainer.classList.add('col-4', 'col-6-ldscape', 'small-height');
+        break;
+      case 12:
+        newCardContainer.classList.add('col-3', 'col-4-ldscape', 'medium-height');
+        break;
+      case 18:
+        newCardContainer.classList.add('col-2', 'col-4-small', 'col-3-medium', 'large-height');
+        break;
+      default:
+        break;
     }
   }
   const frontBack = document.querySelectorAll('.card');
@@ -178,19 +184,19 @@ function timerStart() {
   if (seconds === 59) {
     document.getElementById('minutes').textContent = ++minutes;
     seconds = 0;
-    document.getElementById('seconds').textContent = '0' + seconds;
+    document.getElementById('seconds').textContent = `0 ${seconds}`;
   } else if (seconds >= 9) {
     document.getElementById('seconds').textContent = ++seconds;
   } else {
-    document.getElementById('seconds').textContent = '0' + ++seconds;
+    document.getElementById('seconds').textContent = `0 ${++seconds}`;
   }
 }
 
 function finalTimer() {
   if (minutes > 1) {
-    finalTime.textContent = 'Total Time: ' + minutes + ' minutes' + ' and ';
+    finalTime.textContent = `Total Time: ${minutes} minutes and `;
   } else if (minutes === 1) {
-    finalTime.textContent = 'Total Time: ' + minutes + ' minute' + ' and ';
+    finalTime.textContent = `Total Time: ${minutes} minute and `;
   } else {
     finalTime.textContent = 'Total Time: ';
   }
@@ -201,9 +207,9 @@ function finalTimer() {
 function secondsTimer() {
   let secondsMessage;
   if (seconds > 1) {
-    secondsMessage = seconds + ' seconds.';
+    secondsMessage = `${seconds} seconds`;
   } else if (seconds === 1) {
-    secondsMessage = seconds + ' second.';
+    secondsMessage = `${seconds} second.`;
   } else if (seconds === 0) {
     secondsMessage = 'no seconds!';
   }
