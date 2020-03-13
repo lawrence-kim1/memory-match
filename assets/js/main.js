@@ -188,7 +188,7 @@ function timerStart() {
   } else if (seconds >= 9) {
     document.getElementById('seconds').textContent = ++seconds;
   } else {
-    document.getElementById('seconds').textContent = `0 ${++seconds}`;
+    document.getElementById('seconds').textContent = `0${++seconds}`;
   }
 }
 
