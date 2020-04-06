@@ -32,4 +32,4 @@ Try the application live at [https://memory-match.lawrkim.com](https://memory-ma
   git clone https://github.com/lawrence-kim1/memory-match
   cd memory-match
   ```
-2. View the application by opening index.html in your browser.
+2. View the application by opening ```index.html``` in your browser.
