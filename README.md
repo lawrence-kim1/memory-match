@@ -1,4 +1,4 @@
-# Memory Match
+# memory-match
 
 ## Description
 Memory Match is a simple card matching game stylized to include popular music streaming providers.
@@ -20,3 +20,16 @@ Try the application live at [https://memory-match.lawrkim.com](https://memory-ma
 
 ## Preview
 ![Memory Match](assets/images/memory-match.gif)
+
+## Development
+
+#### System Requirements
+- None
+
+#### Getting Started
+1. Clone the repository.
+  ```shell
+  git clone https://github.com/lawrence-kim1/memory-match
+  cd memory-match
+  ```
+2. View the application by opening index.html in your browser.
